@@ -75,8 +75,8 @@ namespace MagicStorage.Sorting
 			ItemID.CratePotion => true,
 			ItemID.SonarPotion => true,
 			ItemID.Ale => true,
-			_ when MagicRecipes.fishingBobberRecipeGroup.ValidItems.Contains(item.type) => true,
-			_ when MagicRecipes.toiletRecipeGroup.ValidItems.Contains(item.type) => true,
+				_ when MagicRecipes.fishingBobberRecipeGroup?.ValidItems?.Contains(item.type) == true => true,
+				_ when MagicRecipes.toiletRecipeGroup?.ValidItems?.Contains(item.type) == true => true,
 			_ => SortClassList.FishingPole(item) || SortClassList.FishingBait(item)
 		};
 
