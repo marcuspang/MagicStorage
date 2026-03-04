@@ -29,8 +29,9 @@ namespace MagicStorage {
 
 			long maxLines = 30;
 			int numLines = 1;
-			string[] toolTipLine = new string[maxLines];
-			bool[] preFixLine = new bool[maxLines];
+				string[] toolTipLine = new string[maxLines];
+				Microsoft.Xna.Framework.Color[] lineColors = new Microsoft.Xna.Framework.Color[maxLines];
+				bool[] preFixLine = new bool[maxLines];
 			bool[] badPreFixLine = new bool[maxLines];
 			for (int i = 0; i < maxLines; i++) {
 				preFixLine[i] = false;
@@ -38,7 +39,8 @@ namespace MagicStorage {
 			}
 			string[] toolTipNames = new string[maxLines];
 
-			Main.MouseText_DrawItemTooltip_GetLinesInfo(item, ref yoyoLogo, ref researchLine, oldKB, ref numLines, toolTipLine, preFixLine, badPreFixLine, toolTipNames, out int prefixlineIndex);
+				Main.MouseText_DrawItemTooltip_GetLinesInfo(item, ref yoyoLogo, ref researchLine, oldKB, ref numLines, toolTipLine, lineColors);
+				int prefixlineIndex = -1;
 
 			// "Main.HoverItem" is set every render tick, but this method can be given "any item"
 			// Hence, to ensure that the knockback of the item doesn't grow to infinity, reset it to what it used to be

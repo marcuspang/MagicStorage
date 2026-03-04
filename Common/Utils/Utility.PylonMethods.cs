@@ -30,11 +30,10 @@ namespace MagicStorage {
 				SceneMetrics sceneMetrics = Main.PylonSystem._sceneMetrics;
 				SceneMetricsScanSettings settings = new SceneMetricsScanSettings {
 					VisualScanArea = null,
-					BiomeScanCenterPositionInWorld = info.PositionInTiles.ToWorldCoordinates(),
-					ScanOreFinderData = false
+					BiomeScanCenterPositionInWorld = info.PositionInTiles.ToWorldCoordinates()
 				};
 
-				sceneMetrics.ScanAndExportToMain(settings);
+				sceneMetrics.Scan(settings);
 				flag = DoesPylonAcceptTeleportation(info, player);
 			} catch {
 				// Swallow any exceptions and assume that the pylon was invalid

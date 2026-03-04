@@ -51,7 +51,7 @@ namespace MagicStorage.Items {
 			CreateRecipe()
 				.AddIngredient(ItemID.GoldenKey, 3)
 				.AddIngredient(ItemID.Wire, 25)
-				.AddRecipeGroup(RecipeGroupID.IronBar, 5)
+				.AddRecipeGroup("IronBar", 5)
 				.AddIngredient<StorageComponent>()
 				.AddIngredient(ItemID.Amber, 6)
 				.AddTile(TileID.Anvils)

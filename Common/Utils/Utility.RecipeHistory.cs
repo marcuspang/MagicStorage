@@ -16,7 +16,7 @@ namespace MagicStorage {
 		internal static bool RecipesMatchForHistory(Recipe recipe1, Recipe recipe2) {
 			return recipe1.createItem.type == recipe2.createItem.type
 				&& recipe1.requiredItem.SequenceEqual(recipe2.requiredItem, ItemTypeComparer.Instance)
-				&& recipe1.requiredTile.SequenceEqual(recipe2.requiredTile, EqualityComparer<int>.Default);
+				&& recipe1.requiredTile == recipe2.requiredTile;
 		}
 	}
 }

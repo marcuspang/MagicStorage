@@ -666,7 +666,7 @@ namespace MagicStorage.Components
 				ModPacket packet = PrepareClientRequest(Operation.Deposit);
 				ItemIO.Send(item, packet, true, true);
 				packet.Send();
-				item.SetDefaults(0, true);
+				item.SetDefaults(0);
 
 				netcodeUpdate = true;
 				netDesync = 0;
@@ -705,7 +705,7 @@ namespace MagicStorage.Components
 
 				foreach (Item item in items)
 				{
-					item.SetDefaults(0, true);
+					item.SetDefaults(0);
 				}
 				changed = true;
 

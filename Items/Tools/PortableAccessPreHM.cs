@@ -23,8 +23,8 @@ namespace MagicStorage.Items {
 		public override void AddRecipes() {
 			CreateRecipe()
 				.AddIngredient<Locator>()
-				.AddRecipeGroup(RecipeGroupID.Wood, 20)
-				.AddRecipeGroup(RecipeGroupID.IronBar, 15)
+				.AddRecipeGroup("Wood", 20)
+				.AddRecipeGroup("IronBar", 15)
 				.AddRecipeGroup("MagicStorage:AnyDemoniteBar", 10)
 				.AddRecipeGroup("MagicStorage:AnyDiamond", 3)
 				.AddIngredient(ItemID.Ruby, 3)

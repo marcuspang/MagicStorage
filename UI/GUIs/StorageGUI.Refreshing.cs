@@ -45,7 +45,7 @@ namespace MagicStorage {
 
 		internal static readonly List<Item> items = new();
 		internal static readonly ConditionalWeakTable<Item, List<Item>> itemToSourceItems = new();
-		// NOTE: Removed because ItemID.Sets.IsAMaterial[] will always be read in Item.SetDefaults() for items in storage
+		// NOTE: Removed because ItemID.Sets.IsAMaterial[] will always be read in Item.SetDefaults(0) for items in storage
 	//	internal static readonly List<bool> didMatCheck = new();
 
 		[Obsolete("Use the methods for requesting refresh threads in MagicUI instead", error: true)]

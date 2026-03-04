@@ -560,7 +560,7 @@ printReport:
 		public static void ReceiveClientSendTEUpdate(BinaryReader reader, int sender)
 		{
 			Point16 position = new(reader.ReadInt16(), reader.ReadInt16());
-			TileEntity ent = TileEntity.Read(reader, true);
+			TileEntity ent = TileEntity.Read(reader, Main.curRelease, networkSend: true);
 
 			if (Main.netMode == NetmodeID.Server)
 			{
@@ -818,7 +818,7 @@ printReport:
 
 		public static void ClientReciveStorageSync(BinaryReader reader)
 		{
-			TileEntity.Read(reader, true);
+			TileEntity.Read(reader, Main.curRelease, networkSend: true);
 
 			Report(true, MessageType.SyncStorageUnitToClinet + " packet received by client " + Main.myPlayer);
 		}

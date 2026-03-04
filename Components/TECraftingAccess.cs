@@ -173,7 +173,7 @@ namespace MagicStorage.Components
 					stations.Add(nItem);
 					item.stack--;
 					if (item.stack <= 0)
-						item.SetDefaults();
+						item.SetDefaults(0);
 
 					if (Main.netMode != NetmodeID.Server)
 						UpdateRecipesFromStationAction(nItem);
@@ -190,7 +190,7 @@ namespace MagicStorage.Components
 				ModPacket packet = PrepareClientRequest(Operation.Deposit);
 				ItemIO.Send(item, packet, true, true);
 				packet.Send();
-				item.SetDefaults(0, true);
+				item.SetDefaults(0);
 			}
 			else
 			{

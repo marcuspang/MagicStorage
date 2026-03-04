@@ -30,8 +30,8 @@ namespace MagicStorage.Items
 		public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe(16);
-			recipe.AddRecipeGroup(RecipeGroupID.Wood, 16);
-			recipe.AddRecipeGroup(RecipeGroupID.IronBar);
+			recipe.AddRecipeGroup("Wood", 16);
+			recipe.AddRecipeGroup("IronBar");
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
 		}

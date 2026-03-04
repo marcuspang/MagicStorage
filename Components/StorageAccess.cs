@@ -122,7 +122,6 @@ namespace MagicStorage.Components
 				if (PlayerInput.GrappleAndInteractAreShared)
 					PlayerInput.Triggers.JustPressed.Grapple = false;
 				Main.playerInventory = true;
-				Main.recBigList = false;
 				Main.CreativeMenu.CloseMenu();
 				if (TileEntity.ByPosition.TryGetValue(toOpen, out TileEntity te) && te is TEStorageComponent)
 					player.tileEntityAnchor.Set(te.ID, i, j);

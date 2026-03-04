@@ -168,7 +168,7 @@ namespace MagicStorage.Sorting
 
 		private static bool BuffPotion(Item item) => item.consumable && item.buffType > 0;
 
-		public static bool BossSpawn(Item item) => ItemID.Sets.SortingPriorityBossSpawns[item.type] >= 0;
+		public static bool BossSpawn(Item item) => ContentSamples.CreativeHelper.GetItemGroup(item, out _) == ContentSamples.CreativeHelper.ItemGroup.BossItem;
 
 		private static bool Painting(Item item) => ItemID.Sets.SortingPriorityPainting[item.type] >= 0 || item.paint > 0;
 
@@ -271,8 +271,11 @@ namespace MagicStorage.Sorting
 			return result;
 		}
 
-		private static int CompareBossSpawn(Item item1, Item item2) =>
-			ItemID.Sets.SortingPriorityBossSpawns[item2.type].CompareTo(ItemID.Sets.SortingPriorityBossSpawns[item1.type]);
+		private static int CompareBossSpawn(Item item1, Item item2) {
+			ContentSamples.CreativeHelper.GetItemGroup(item1, out int order1);
+			ContentSamples.CreativeHelper.GetItemGroup(item2, out int order2);
+			return order2.CompareTo(order1);
+		}
 
 		private static int ComparePainting(Item item1, Item item2)
 		{

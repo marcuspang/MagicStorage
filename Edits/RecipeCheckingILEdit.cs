@@ -87,7 +87,7 @@ namespace MagicStorage.Edits {
 
 		private static void PrepareRecipeInfo(Recipe recipe, out string result, out string tile) {
 			result = recipe.createItem.IsAir ? "<result not set>" : $"{Lang.GetItemNameValue(recipe.createItem.type)} ({recipe.createItem.stack})";
-			tile = recipe.requiredTile.Count == 0 ? "hand" : string.Join(", ", recipe.requiredTile.Select(t => TileID.Search.TryGetName(t, out string s) ? s : "<unknown>"));
+			tile = recipe.requiredTile < 0 ? "hand" : (TileID.Search.TryGetName(recipe.requiredTile, out string s) ? s : "<unknown>");
 		}
 	}
 }

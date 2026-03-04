@@ -189,7 +189,6 @@ namespace MagicStorage.Items
 				modPlayer.timeSinceOpen = 0;
 				modPlayer.wirelessLatency = StoragePlayer.MaxLatency;
 				Main.playerInventory = true;
-				Main.recBigList = false;
 				Main.CreativeMenu.CloseMenu();
 				if (TileEntity.ByPosition.TryGetValue(toOpen, out TileEntity te) && te is TEStorageComponent)
 					player.tileEntityAnchor.Set(te.ID, toOpen.X, toOpen.Y);

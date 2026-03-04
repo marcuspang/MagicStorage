@@ -165,7 +165,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 		}
 
 		public IEnumerable<int> GetRequiredTiles() {
-			return GetAllRecipes().SelectMany(static r => r.requiredTile).Distinct();
+			return GetAllRecipes().Where(static r => r.requiredTile >= 0).Select(static r => r.requiredTile).Distinct();
 		}
 
 		public bool HasCondition(Condition condition) {
@@ -252,7 +252,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 					bool usedRecipeGroup = false;
 					foreach (int groupID in recipe.acceptedGroups) {
 						RecipeGroup group = RecipeGroup.recipeGroups[groupID];
-						if (group.ContainsItem(item.type)) {
+						if (group.Contains(item.type)) {
 							// Consume from the excess results first
 							foreach (int groupItem in group.ValidItems) {
 								if (excessIndicies.TryGetValue(groupItem, out excessIndex)) {
@@ -331,7 +331,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 				}
 
 				recipes.Add(new RecursedRecipe(context.depth, recipe));
-				requiredTiles.UnionWith(recipe.requiredTile);
+				if (recipe.requiredTile >= 0) requiredTiles.Add(recipe.requiredTile);
 				requiredConditions.UnionWith(recipe.Conditions);
 			}
 		}

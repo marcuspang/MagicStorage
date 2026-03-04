@@ -26,7 +26,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 
 			foreach (int id in recipeInfo.sourceRecipe.acceptedGroups) {
 				RecipeGroup group = RecipeGroup.recipeGroups[id];
-				if (group.ContainsItem(recipeItem))
+				if (group.Contains(recipeItem))
 					types.UnionWith(group.ValidItems);
 			}
 
@@ -83,7 +83,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 						RecipeGroup group = RecipeGroup.recipeGroups[groupID];
 
 						// Attempt to use items that are valid in the group
-						if (group.ContainsItem(item.type)) {
+						if (group.Contains(item.type)) {
 							foreach (int groupItem in group.ValidItems) {
 								if (blockedRecipeIngredient > 0 && groupItem == blockedRecipeIngredient)
 									goto checkNextTree;

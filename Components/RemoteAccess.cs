@@ -50,7 +50,7 @@ namespace MagicStorage.Components
 					if (item.type == ModContent.ItemType<LocatorDisk>())
 						locator.Location = Point16.NegativeOne;
 					else
-						item.SetDefaults();
+						item.SetDefaults(0);
 				}
 
 				if (player.selectedItem == 58)

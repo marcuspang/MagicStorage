@@ -566,7 +566,7 @@ namespace MagicStorage.UI.States {
 							Main.mouseItem = StorageGUI.DoWithdraw(toWithdraw, ItemSlot.ShiftInUse);
 								
 							if (ItemSlot.ShiftInUse)
-								Main.mouseItem = player.GetItem(Main.myPlayer, Main.mouseItem, GetItemSettings.InventoryEntityToPlayerInventorySettings);
+								Main.mouseItem = player.GetItem(Main.mouseItem, GetItemSettings.QuickTransferFromSlot);
 								
 							changed = true;
 							canRefresh = true;

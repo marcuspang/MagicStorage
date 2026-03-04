@@ -31,10 +31,8 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 		}
 
 		public bool CanUseRecipe(Recipe recipe) {
-			foreach (int tile in recipe.requiredTile) {
-				if (!IsTileAvailable(tile))
-					return false;
-			}
+			if (recipe.requiredTile >= 0 && !IsTileAvailable(recipe.requiredTile))
+				return false;
 
 			return IsRecipeAvailable(recipe);
 		}
@@ -60,7 +58,7 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 			bool usedRecipeGroup = false;
 			foreach (int groupID in recipe.acceptedGroups) {
 				RecipeGroup group = RecipeGroup.recipeGroups[groupID];
-				if (group.ContainsItem(item)) {
+				if (group.Contains(item)) {
 					foreach (int groupItem in group.ValidItems) {
 						if (TryGetIngredientQuantity(groupItem, out quantity)) {
 							stack += quantity;

@@ -48,7 +48,7 @@ public class MagicCache : ModSystem
 				// Check recipe groups
 				foreach (int id in recipe.acceptedGroups) {
 					RecipeGroup group = RecipeGroup.recipeGroups[id];
-					if (group.ContainsItem(itemType)) {
+					if (group.Contains(itemType)) {
 						yield return recipe;
 						break;
 					}
@@ -76,12 +76,8 @@ public class MagicCache : ModSystem
 
 		private IEnumerable<Recipe> GetRecipes() {
 			foreach (Recipe recipe in EnabledRecipes) {
-				foreach (int requiredTile in recipe.requiredTile) {
-					if (requiredTile == tileType) {
-						yield return recipe;
-						break;
-					}
-				}
+				if (recipe.requiredTile == tileType)
+					yield return recipe;
 			}
 		}
 
@@ -229,8 +225,9 @@ public class MagicCache : ModSystem
 				list.Add(recipe);
 			}
 
-			foreach (var tile in recipe.requiredTile)
+			if (recipe.requiredTile >= 0)
 			{
+				int tile = recipe.requiredTile;
 				if (!hasTile.TryGetValue(tile, out var list))
 					hasTile[tile] = list = new();
 
