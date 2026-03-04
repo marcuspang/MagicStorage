@@ -57,7 +57,9 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 
 			bool usedRecipeGroup = false;
 			foreach (int groupID in recipe.acceptedGroups) {
-				RecipeGroup group = RecipeGroup.recipeGroups[groupID];
+				if (!RecipeGroup.recipeGroups.TryGetValue(groupID, out RecipeGroup group))
+					continue;
+
 				if (group.Contains(item)) {
 					foreach (int groupItem in group.ValidItems) {
 						if (TryGetIngredientQuantity(groupItem, out quantity)) {

@@ -25,7 +25,9 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 			HashSet<int> types = new() { recipeItem };
 
 			foreach (int id in recipeInfo.sourceRecipe.acceptedGroups) {
-				RecipeGroup group = RecipeGroup.recipeGroups[id];
+				if (!RecipeGroup.recipeGroups.TryGetValue(id, out RecipeGroup group))
+					continue;
+
 				if (group.Contains(recipeItem))
 					types.UnionWith(group.ValidItems);
 			}
@@ -79,11 +81,12 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 					ClampedArithmetic stack = item.stack;
 
 					int count;
-					foreach (int groupID in subrecipe.acceptedGroups) {
-						RecipeGroup group = RecipeGroup.recipeGroups[groupID];
+						foreach (int groupID in subrecipe.acceptedGroups) {
+							if (!RecipeGroup.recipeGroups.TryGetValue(groupID, out RecipeGroup group))
+								continue;
 
-						// Attempt to use items that are valid in the group
-						if (group.Contains(item.type)) {
+							// Attempt to use items that are valid in the group
+							if (group.Contains(item.type)) {
 							foreach (int groupItem in group.ValidItems) {
 								if (blockedRecipeIngredient > 0 && groupItem == blockedRecipeIngredient)
 									goto checkNextTree;

@@ -251,7 +251,9 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 
 					bool usedRecipeGroup = false;
 					foreach (int groupID in recipe.acceptedGroups) {
-						RecipeGroup group = RecipeGroup.recipeGroups[groupID];
+						if (!RecipeGroup.recipeGroups.TryGetValue(groupID, out RecipeGroup group))
+							continue;
+
 						if (group.Contains(item.type)) {
 							// Consume from the excess results first
 							foreach (int groupItem in group.ValidItems) {

@@ -22,15 +22,18 @@ namespace MagicStorage.Common.Systems.RecurrentRecipes {
 
 		public static RequiredMaterialInfo FromGroup(RecipeGroup group, SharedCounter stack) => new RequiredMaterialInfo(group.RegisteredId, stack, true);
 
-		public IEnumerable<int> GetValidItems() {
-			if (!recipeGroup) {
-				// Only one item
-				yield return itemOrGroupID;
-			} else {
-				foreach (int groupItem in RecipeGroup.recipeGroups[itemOrGroupID].ValidItems)
-					yield return groupItem;
+			public IEnumerable<int> GetValidItems() {
+				if (!recipeGroup) {
+					// Only one item
+					yield return itemOrGroupID;
+				} else {
+					if (!RecipeGroup.recipeGroups.TryGetValue(itemOrGroupID, out RecipeGroup group))
+						yield break;
+
+					foreach (int groupItem in group.ValidItems)
+						yield return groupItem;
+				}
 			}
-		}
 
 		public void UpdateStack(int add) => _stack += add;
 
