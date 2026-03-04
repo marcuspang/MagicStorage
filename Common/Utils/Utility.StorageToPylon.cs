@@ -223,7 +223,7 @@ namespace MagicStorage {
 			if (info.ModPylon is ModPylon destinationPylon)
 				destinationPylon.ValidTeleportCheck_DestinationPostCheck(info, ref flag, ref key);
 
-			player.ForceUpdateBiomes();
+			player.UpdateBiomes();
 
 			NearbyEffectsBlockingDuringPylonScanningDetour.DoBlockHooks = false;
 

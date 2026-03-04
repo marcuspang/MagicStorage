@@ -50,13 +50,9 @@ namespace MagicStorage.Items
 		public override bool CanUseItem(Player player)
 			=> player.ownedProjectileCounts[Item.shoot] < 1;
 
-		public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI){
-			Texture2D texture = TextureAssets.Projectile[ModContent.ProjectileType<BiomeGlobeThrown>()].Value;
-
-			spriteBatch.Draw(texture, Item.Center - Main.screenPosition, null, lightColor, rotation, texture.Size() / 2f, scale, SpriteEffects.None, 0);
-
-			return false;
-		}
+			public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI){
+				return true;
+			}
 	}
 
 	public class BiomePlayer : ModPlayer
@@ -96,10 +92,10 @@ namespace MagicStorage.Items
 						{
 							SoundEngine.PlaySound(SoundID.Grab);
 							player.inventory[k].stack++;
-							sItem.SetDefaults();
+							sItem.SetDefaults(0);
 
 							if (player.selectedItem == 58)
-								Main.mouseItem.SetDefaults();
+								Main.mouseItem.SetDefaults(0);
 						}
 					}
 				}

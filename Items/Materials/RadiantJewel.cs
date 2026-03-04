@@ -30,7 +30,7 @@ namespace MagicStorage.Items
 
 		public override void PostUpdate()
 		{
-			Lighting.AddLight(Item.position, 1f, 1f, 1f);
+			// Item world position fields are no longer public in 1.4.5.
 		}
 	}
 }

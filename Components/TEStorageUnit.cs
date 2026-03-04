@@ -169,7 +169,7 @@ namespace MagicStorage.Components
 			{
 				Item item = toDeposit.Clone();
 				items.Add(item);
-				toDeposit.SetDefaults(0, true);
+				toDeposit.SetDefaults(0);
 				hasChange = true;
 				finished = true;
 			}

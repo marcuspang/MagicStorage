@@ -174,7 +174,7 @@ namespace MagicStorage.UI.States {
 				} else {
 					// Not using recursion crafting or the recursion simulation produced no results
 					// Use the original recipe as a fallback
-					requiredTiles = CraftingGUI.selectedRecipe.requiredTile;
+					requiredTiles = CraftingGUI.selectedRecipe.requiredTile >= 0 ? [CraftingGUI.selectedRecipe.requiredTile] : [];
 					conditions = CraftingGUI.selectedRecipe.Conditions;
 
 					CraftingGUI.lastKnownRecursionErrorForObjects = MagicStorageConfig.IsRecursionEnabled

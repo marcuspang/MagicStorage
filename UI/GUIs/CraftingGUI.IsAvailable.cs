@@ -118,10 +118,8 @@ namespace MagicStorage {
 
 			bool[] adjTiles = thread?.MainZoneObjectsFilterControls.adjTiles ?? CraftingGUI.adjTiles;
 
-			foreach (int requiredTile in recipe.requiredTile) {
-				if (!adjTiles[requiredTile])
-					return false;
-			}
+			if (recipe.requiredTile >= 0 && !adjTiles[recipe.requiredTile])
+				return false;
 
 			bool creativeUnitPresent = thread?.IngredientControls.creativeUnitPresent.Value ?? allItemsAreInfinite;
 			HashSet<int> infiniteItems = thread?.IngredientControls.infiniteItems.Value ?? isItemInfinite;

@@ -150,7 +150,7 @@ namespace MagicStorage.Components
 
 			item.stack--;
 			if (item.stack <= 0)
-				item.SetDefaults();
+				item.SetDefaults(0);
 			if (player.selectedItem == 58)
 				Main.mouseItem = item.Clone();
 

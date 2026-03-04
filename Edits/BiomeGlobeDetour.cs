@@ -22,7 +22,7 @@ public class BiomeGlobeDetour : Edit
 	private static void Recipe_FindRecipes(OnRecipe.orig_FindRecipes orig, bool canDelayCheck)
 	{
 		// For whatever reason, this hook can end up running during worldgen and the main menu
-		if (Main.gameMenu || WorldGen.gen) {
+		if (Main.gameMenu || WorldGen.generatingWorld) {
 			orig(canDelayCheck);
 			return;
 		}

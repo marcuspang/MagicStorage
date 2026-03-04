@@ -276,7 +276,7 @@ namespace MagicStorage
 			if (item.IsAir)
 				return;
 
-			item = player.GetItem(Main.myPlayer, item, GetItemSettings.InventoryEntityToPlayerInventorySettings);
+			item = player.GetItem(item, GetItemSettings.QuickTransferFromSlot);
 			if (item.IsAir)
 				return;
 

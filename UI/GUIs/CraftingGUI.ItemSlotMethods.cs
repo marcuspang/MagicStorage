@@ -28,15 +28,15 @@ namespace MagicStorage {
 				return new Item();
 
 			Item item = selectedRecipe.requiredItem[slot].Clone();
-			if (selectedRecipe.HasRecipeGroup(RecipeGroupID.Wood) && item.type == ItemID.Wood)
+			if (selectedRecipe.HasRecipeGroup("Wood") && item.type == ItemID.Wood)
 				item.SetNameOverride(Language.GetText("LegacyMisc.37").Value + " " + Lang.GetItemNameValue(ItemID.Wood));
-			if (selectedRecipe.HasRecipeGroup(RecipeGroupID.Sand) && item.type == ItemID.SandBlock)
+			if (selectedRecipe.HasRecipeGroup("Sand") && item.type == ItemID.SandBlock)
 				item.SetNameOverride(Language.GetText("LegacyMisc.37").Value + " " + Lang.GetItemNameValue(ItemID.SandBlock));
-			if (selectedRecipe.HasRecipeGroup(RecipeGroupID.IronBar) && item.type == ItemID.IronBar)
+			if (selectedRecipe.HasRecipeGroup("IronBar") && item.type == ItemID.IronBar)
 				item.SetNameOverride(Language.GetText("LegacyMisc.37").Value + " " + Lang.GetItemNameValue(ItemID.IronBar));
-			if (selectedRecipe.HasRecipeGroup(RecipeGroupID.Fragment) && item.type == ItemID.FragmentSolar)
+			if (selectedRecipe.HasRecipeGroup("Fragment") && item.type == ItemID.FragmentSolar)
 				item.SetNameOverride(Language.GetText("LegacyMisc.37").Value + " " + Language.GetText("LegacyMisc.51").Value);
-			if (selectedRecipe.HasRecipeGroup(RecipeGroupID.PressurePlate) && item.type == ItemID.GrayPressurePlate)
+			if (selectedRecipe.HasRecipeGroup("PressurePlate") && item.type == ItemID.GrayPressurePlate)
 				item.SetNameOverride(Language.GetText("LegacyMisc.37").Value + " " + Language.GetText("LegacyMisc.38").Value);
 			if (ProcessGroupsForText(selectedRecipe, item.type, out string nameOverride))
 				item.SetNameOverride(nameOverride);
@@ -47,7 +47,7 @@ namespace MagicStorage {
 			Item storageItem = storageItems.FirstOrDefault(stored => stored.type == i.type) ?? new Item();
 
 			foreach (RecipeGroup rec in selectedRecipe.acceptedGroups.Select(index => RecipeGroup.recipeGroups[index])) {
-				if (rec.ContainsItem(item.type)) {
+				if (rec.Contains(item.type)) {
 					foreach (int type in rec.ValidItems) {
 						foreach (Item storedItem in storageItems) {
 							if (storedItem.type == type) {
@@ -86,7 +86,7 @@ namespace MagicStorage {
 		internal static bool ProcessGroupsForText(Recipe recipe, int type, out string theText)
 		{
 			foreach (int num in recipe.acceptedGroups)
-				if (RecipeGroup.recipeGroups[num].ContainsItem(type))
+				if (RecipeGroup.recipeGroups[num].Contains(type))
 				{
 					theText = RecipeGroup.recipeGroups[num].GetText();
 					return true;

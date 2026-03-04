@@ -99,7 +99,7 @@ namespace MagicStorage
 			foreach (int num in recipe.acceptedGroups)
 			{
 				RecipeGroup recipeGroup = RecipeGroup.recipeGroups[num];
-				if (recipeGroup.ContainsItem(inventoryType) && recipeGroup.ContainsItem(requiredType))
+				if (recipeGroup.Contains(inventoryType) && recipeGroup.Contains(requiredType))
 					return true;
 			}
 
@@ -113,7 +113,7 @@ namespace MagicStorage
 			foreach (int group in recipe.acceptedGroups) {
 				RecipeGroup recipeGroup = RecipeGroup.recipeGroups[group];
 
-				if (recipeGroup.ContainsItem(ingredientType)) {
+				if (recipeGroup.Contains(ingredientType)) {
 					foreach (int groupItemType in recipeGroup.ValidItems) {
 						if (MeetsIngredientRequirement_CheckCounts(countsDictionary, groupItemType, ref requiredStack))
 							return true;
@@ -310,7 +310,7 @@ namespace MagicStorage
 			foreach (int group in recipe.acceptedGroups) {
 				RecipeGroup recipeGroup = RecipeGroup.recipeGroups[group];
 
-				if (recipeGroup.ContainsItem(requiredIngredient)) {
+				if (recipeGroup.Contains(requiredIngredient)) {
 					foreach (int groupItemType in recipeGroup.ValidItems) {
 						if (infiniteItems.Contains(groupItemType)) {
 							totalQuantity = int.MaxValue;

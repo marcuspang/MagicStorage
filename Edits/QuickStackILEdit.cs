@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
+using Terraria.UI;
 using ILPlayer = Terraria.IL_Player;
 using ILChest = Terraria.IL_Chest;
 using Terraria.ModLoader;
@@ -115,7 +116,7 @@ namespace MagicStorage.Edits {
 			}
 		}
 
-		private static readonly MethodInfo Chest_PutItemInNearbyChest = typeof(Chest).GetMethod(nameof(Chest.PutItemInNearbyChest), BindingFlags.Public | BindingFlags.Static);
+		private static readonly MethodInfo Chest_PutItemInNearbyChest = typeof(ChestUI).GetMethod(nameof(ChestUI.TryPlacingInChest), BindingFlags.Public | BindingFlags.Static);
 
 		private static void Chest_ServerPlaceItem(ILContext il) {
 			ILHelper.CommonPatchingWrapper(il, MagicStorageMod.Instance, throwOnFail: false, Patch_Chest_ServerPlaceItem);
@@ -131,7 +132,7 @@ namespace MagicStorage.Edits {
 			}
 
 			if (!foundAny) {
-				badReturnReason = "Could not find any references to Chest.PutItemInNearbyChest()";
+					badReturnReason = "Could not find any references to ChestUI.TryPlacingInChest()";
 				return false;
 			}
 

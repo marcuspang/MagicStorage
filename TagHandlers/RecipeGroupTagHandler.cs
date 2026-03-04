@@ -56,8 +56,7 @@ namespace MagicStorage.TagHandlers {
 				return true;
 			}
 
-			public override float GetStringLength(DynamicSpriteFont font) => 32f * Scale * 0.65f;
-		}
+			}
 
 		public Mod Mod { get; private set; } = null;
 
@@ -80,7 +79,7 @@ namespace MagicStorage.TagHandlers {
 
 			RecipeGroup group = null;
 			if (RecipeGroup.recipeGroupIDs.TryGetValue(text, out int id) && RecipeGroup.recipeGroups.TryGetValue(id, out group))
-				item.netDefaults(group.IconicItemId);
+				item.netDefaults(group.DecraftItemId);
 
 			if (item.type <= ItemID.None)
 				return new TextSnippet(text);

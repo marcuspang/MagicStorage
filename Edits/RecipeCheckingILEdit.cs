@@ -65,7 +65,8 @@ namespace MagicStorage.Edits {
 				if (recipe.Disabled)
 					continue;  //Ignore since Magic Storage can't use it anyway
 
-				if (recipe.requiredItem.Any(i => i.type <= ItemID.None || i.stack <= 0)) {
+				// 1.4.5 keeps placeholder/air entries in requiredItem; only validate real ingredients.
+				if (recipe.requiredItem.Any(i => !i.IsAir && (i.type <= ItemID.None || i.stack <= 0))) {
 					PrepareRecipeInfo(recipe, out string result, out string tile);
 
 					throw new Exception($"Mod \"{mod.Name}\" added or modified a recipe to be in an invalid state.\n" +
@@ -87,7 +88,7 @@ namespace MagicStorage.Edits {
 
 		private static void PrepareRecipeInfo(Recipe recipe, out string result, out string tile) {
 			result = recipe.createItem.IsAir ? "<result not set>" : $"{Lang.GetItemNameValue(recipe.createItem.type)} ({recipe.createItem.stack})";
-			tile = recipe.requiredTile.Count == 0 ? "hand" : string.Join(", ", recipe.requiredTile.Select(t => TileID.Search.TryGetName(t, out string s) ? s : "<unknown>"));
+			tile = recipe.requiredTile < 0 ? "hand" : (TileID.Search.TryGetName(recipe.requiredTile, out string s) ? s : "<unknown>");
 		}
 	}
 }
