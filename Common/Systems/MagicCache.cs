@@ -47,7 +47,9 @@ public class MagicCache : ModSystem
 
 				// Check recipe groups
 				foreach (int id in recipe.acceptedGroups) {
-					RecipeGroup group = RecipeGroup.recipeGroups[id];
+					if (!RecipeGroup.recipeGroups.TryGetValue(id, out RecipeGroup group))
+						continue;
+
 					if (group.Contains(itemType)) {
 						yield return recipe;
 						break;
@@ -236,7 +238,9 @@ public class MagicCache : ModSystem
 
 			foreach (var id in recipe.acceptedGroups)
 			{
-				RecipeGroup group = RecipeGroup.recipeGroups[id];
+				if (!RecipeGroup.recipeGroups.TryGetValue(id, out RecipeGroup group))
+					continue;
+
 				foreach (var item in group.ValidItems)
 				{
 					if (!hasIngredient.TryGetValue(item, out var list))
